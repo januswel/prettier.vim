@@ -98,7 +98,7 @@ setlocal formatoptions+=rol
 
 augroup javascript
     autocmd!
-    autocmd BufWritePre *.js call <SID>ModifyByPrettier()
+    autocmd BufWritePre *.js,*.jsx,*.vue call <SID>ModifyByPrettier()
 augroup END
 
 " post-processings {{{1
