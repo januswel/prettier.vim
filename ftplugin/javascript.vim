@@ -96,9 +96,10 @@ endif
 setlocal formatoptions-=t
 setlocal formatoptions+=rol
 
+" autocmds {{{2
 augroup javascript
     autocmd!
-    autocmd BufWritePre *.js,*.jsx call <SID>ModifyByPrettier()
+    autocmd BufWritePre *.js,*.jsx,*.vue call <SID>ModifyByPrettier()
 augroup END
 
 " post-processings {{{1
