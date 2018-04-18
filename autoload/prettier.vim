@@ -79,7 +79,7 @@ function prettier#Modify()
         redir END
 
         let command = prettier_path . ' ' . tempfile . ' --config ' . config_path
-        let modified = system(command)
+        let modified = substitute(system(command), '^\n\+', '', '')
         if v:shell_error != 0
             echoerr modified
             return
