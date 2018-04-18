@@ -1,5 +1,5 @@
 " vim ftplugin file
-" Filename:     javascript.vim
+" Filename:     vue.vim
 " Maintainer:   janus_wel <janus.wel.3@gmail.com>
 " License:      MIT License
 
@@ -23,7 +23,7 @@ setlocal formatoptions+=rol
 " autocmds {{{2
 augroup PrettierJavascript
     autocmd!
-    autocmd BufWritePre *.js,*.jsx call prettier#Modify()
+    autocmd BufWritePre *.vue call prettier#Modify()
 augroup END
 
 " post-processings {{{1

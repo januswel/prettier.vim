@@ -56,27 +56,42 @@ if !exists('*s:RestorePositions')
     endfunction
 endif
 
+if !exists('*s:GenerateTempfileWithExtension')
+    function s:GenerateTempfileWithExtension()
+        return tempname() . '.' . expand('%:e')
+    endfunction
+endif
+
 function prettier#Modify()
     let pos = s:SavePositions()
+    let saved = @z
     try
-        let s:saved = @z
-
         let prettier_path = s:SearchPrettier()
         if prettier_path == ''
             return
         endif
 
         let config_path = system(prettier_path . ' --find-config-path ' . expand('%:p'))
-        silent execute '1,$!' . prettier_path . ' --config ' . config_path
-        silent execute '1,$yank z'
+        let tempfile = s:GenerateTempfileWithExtension()
+        silent normal! gg"zyG
+        execute 'redir! > ' . tempfile
+        silent echo @z
+        redir END
+
+        let command = prettier_path . ' ' . tempfile . ' --config ' . config_path
+        let modified = system(command)
         if v:shell_error != 0
-            normal! u
-            echoerr @z
+            echoerr modified
+            return
         endif
+
+        silent normal! ggVG"_d
+        put =modified
+        silent normal! gg"_dd
     catch
         echoerr v:exception
     finally
-        let @z = s:saved
+        let @z = saved
         call s:RestorePositions(pos)
     endtry
 endfunction
