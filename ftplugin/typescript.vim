@@ -23,7 +23,7 @@ setlocal formatoptions+=rol
 " autocmds {{{2
 augroup PrettierTypescript
     autocmd!
-    autocmd BufWritePre *.ts call prettier#Modify()
+    autocmd BufWritePre *.ts,*.tsx call prettier#Modify()
 augroup END
 
 " post-processings {{{1
