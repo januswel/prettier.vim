@@ -1,5 +1,5 @@
 " vim ftplugin file
-" Filename:     javascript.vim
+" Filename:     typescript.vim
 " Maintainer:   janus_wel <janus.wel.3@gmail.com>
 " License:      MIT License
 
@@ -21,9 +21,9 @@ setlocal formatoptions-=t
 setlocal formatoptions+=rol
 
 " autocmds {{{2
-augroup PrettierJavascript
+augroup PrettierTypescriptReact
     autocmd!
-    autocmd BufWritePre *.js call prettier#Modify()
+    autocmd BufWritePre *.tsx call prettier#Modify()
 augroup END
 
 " post-processings {{{1

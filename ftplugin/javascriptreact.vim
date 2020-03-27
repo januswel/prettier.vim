@@ -23,7 +23,7 @@ setlocal formatoptions+=rol
 " autocmds {{{2
 augroup PrettierJavascript
     autocmd!
-    autocmd BufWritePre *.js call prettier#Modify()
+    autocmd BufWritePre *.jsx call prettier#Modify()
 augroup END
 
 " post-processings {{{1
