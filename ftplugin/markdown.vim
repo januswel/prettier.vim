@@ -23,7 +23,7 @@ setlocal formatoptions+=rol
 " autocmds {{{2
 augroup PrettierMarkdown
     autocmd!
-    autocmd BufWritePre *.md call prettier#Modify()
+    autocmd BufWritePre *.md,*.markdown call prettier#Modify()
 augroup END
 
 " post-processings {{{1

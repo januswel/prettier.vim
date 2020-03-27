@@ -2,9 +2,13 @@
 
 Vim filetype plugin to modify contents of buffers automatically
 
-supported filetype/.ext
+supported extension
 
-- javascript/.js
-- javascript/.jsx
-- javascript/.vue
-- typescript/.ts
+- .js
+- .jsx
+- .json
+- .md
+- .ts
+- .yml
+- .yaml
+- .vue
