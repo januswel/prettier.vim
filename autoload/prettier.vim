@@ -77,6 +77,7 @@ function prettier#Modify()
         execute 'redir! > ' . tempfile
         silent echo @z
         redir END
+        silent execute system('sed -i .org "1d" ' . tempfile . ' 2&> /dev/null')
 
         let command = prettier_path . ' ' . tempfile . ' --config ' . config_path
         let modified = substitute(system(command), '^\n\+', '', '')
