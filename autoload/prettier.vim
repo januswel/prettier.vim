@@ -72,6 +72,10 @@ function prettier#Modify()
         endif
 
         let config_path = system(prettier_path . ' --find-config-path ' . expand('%:p'))
+        if config_path =~ "\[error\]"
+            let config_path = ''
+        endif
+
         let tempfile = s:GenerateTempfileWithExtension()
         silent normal! gg"zyG
         execute 'redir! > ' . tempfile
@@ -80,7 +84,7 @@ function prettier#Modify()
         silent execute system('sed -i .org "1d" ' . tempfile . ' 2&> /dev/null')
 
         let command = prettier_path . ' ' . tempfile
-        if config_path == ''
+        if config_path != ''
             let command = command . ' --config ' . config_path
         endif
         let modified = substitute(system(command), '^\n\+', '', '')
